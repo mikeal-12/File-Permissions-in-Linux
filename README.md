@@ -1,15 +1,16 @@
 # Project description
+
 The research team at my organization (fictional) needs to update the file permissions for certain files and
 directories within the projects directory. The permissions do not currently reflect the level of
 authorization that should be given. Checking and updating these permissions will help keep
 their system secure. To complete this task, I performed the following tasks:
 
 ## Checking file and directory details
+
 The following code demonstrates how I used Linux commands to determine the existing
 permissions set for a specific directory in the file system.
 
 ![image](https://github.com/mikeal-12/File-Permissions-in-Linux/assets/72464155/1bad6bcc-7e06-4828-8808-140cfc397c4f)
-
 
 The first line of the screenshot displays the command I entered, and the other lines display the
 output. The code lists all contents of the projects directory. I used the <code> ls </code> command with the
@@ -20,6 +21,7 @@ named <code>.project_x.txt</code>, and five other project files. The 10-characte
 column represents the permissions set on each file or directory.
 
 ## Describing the permissions string
+
 The 10-character string can be deconstructed to determine who is authorized to access the file and their specific permissions. The characters and what they represent are as follows:
 -	1st character: This character is either a <code>d</code> or hyphen <code>-</code> and indicates the file type. If it’s a <code>d</code>, it’s a directory. If it’s a hyphen <code>-</code>, it’s a regular file.
 
@@ -31,6 +33,7 @@ The 10-character string can be deconstructed to determine who is authorized to a
 For example, the file permissions for <code>project_t.txt</code> are <code>-rw-rw-r--</code>. Since the first character is a hyphen <code>-</code>, this indicates that <code>project_t.txt</code> is a file, not a directory. The second, fifth, and eighth characters are all <code>r</code>, which indicates that user, group, and other all have read permissions. The third and sixth characters are <code>w</code>, which indicates that only the user and group have write permissions. No one has execute permissions for <code>project_t.txt</code>.
 
 ## Changing file permissions
+
 The organization determined that other shouldn't have write access to any of their files. To comply with this, I referred to the file permissions that I previously returned. I determined <code>project_k.txt</code> must have the write access removed for other.
 
 The following code demonstrates how I used Linux commands to do this:
@@ -39,7 +42,8 @@ The following code demonstrates how I used Linux commands to do this:
 
 The first two lines of the screenshot display the commands I entered, and the other lines display the output of the second command. The <code>chmod</code> command changes the permissions on files and directories. The first argument indicates what permissions should be changed, and the second argument specifies the file or directory. In this example, I removed write permissions from other for the <code>project_k.txt</code> file. After this, I used <code>ls -la</code> to review the updates I made.
 
-## Change file permissions on a hidden file
+## Changing file permissions on a hidden file
+
 The research team at my organization recently archived <code>project_x.txt</code>. They do not want anyone to have write access to this project, but the user and group should have read access. 
 
 The following code demonstrates how I used Linux commands to change the permissions:
@@ -48,16 +52,20 @@ The following code demonstrates how I used Linux commands to change the permissi
 
 The first two lines of the screenshot display the commands I entered, and the other lines display the output of the second command. I know .<code>project_x.txt</code> is a hidden file because it starts with a period <code>.</code> . In this example, I removed write permissions from the user and group, and added read permissions to the group. I removed write permissions from the user with <code>u-w</code>. Then, I removed write permissions from the group with <code>g-w</code>, and added read permissions to the group with <code>g+r</code>
 
-## Change directory permissions
+## Changing directory permissions
+
 My organization only wants the <code>researcher2</code> user to have access to the drafts directory and its contents. This means that no one other than <code>researcher2</code> should have execute permissions.
 
 The following code demonstrates how I used Linux commands to change the permissions:
 
 ![image](https://github.com/mikeal-12/File-Permissions-in-Linux/assets/72464155/e51ade96-355f-4a83-b7f3-e6651112c59e)
 
+The first two lines of the screenshot display the commands I entered, and the other lines display the output of the second command. I previously determined that the group had execute permissions, so I used the <code>chmod</code> command to remove them. The <code>researcher2</code> user already had execute permissions, so they did not need to be added.
 
 
+## Summary
 
+I changed multiple permissions to match the level of authorization my organization wanted for files and directories in the projects directory. The first step in this was using <code>ls -la</code> to check the permissions for the directory. This informed my decisions in the following steps. I then used the <code>chmod</code> command multiple times to change the permissions on files and directories.
 
 
 
